@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal portfolio of Prem Lalwani, BBA student." />
+  <title>Prem Lalwani | Personal Portfolio</title>
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --surface: #ffffff;
+      --ink: #172033;
+      --muted: #647087;
+      --primary: #5b5ce2;
+      --primary-dark: #4445bf;
+      --accent: #dce2ff;
+      --line: #e7eaf2;
+      --shadow: 0 18px 50px rgba(34, 43, 86, .09);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 90%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.88);
+      backdrop-filter: blur(14px); border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-weight: 850; font-size: 1.25rem; letter-spacing: -.04em; }
+    .logo span { color: var(--primary); }
+    .nav-links { display: flex; align-items: center; gap: 25px; list-style: none; color: var(--muted); font-size: .94rem; }
+    .nav-links a:hover { color: var(--primary); }
+    .menu-toggle { display: none; border: 0; background: transparent; font-size: 1.6rem; cursor: pointer; color: var(--ink); }
+    .hero { padding: 88px 0 76px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.35fr .8fr; gap: 50px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 7px 13px; border-radius: 99px; background: #ececff; color: var(--primary-dark); font-size: .82rem; font-weight: 750; margin-bottom: 22px; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+    h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: 1.05; letter-spacing: -.065em; margin-bottom: 22px; }
+    h1 span { color: var(--primary); }
+    .hero p { max-width: 610px; color: var(--muted); font-size: 1.08rem; margin-bottom: 29px; }
+    .actions { display: flex; gap: 13px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border-radius: 12px; font-weight: 750; border: 1px solid transparent; transition: .2s; cursor: pointer; font: inherit; font-weight: 750; }
+    .btn-primary { background: var(--primary); color: white; box-shadow: 0 9px 20px rgba(91,92,226,.23); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .btn-outline { border-color: var(--line); background: white; }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .profile-card { background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; box-shadow: var(--shadow); position: relative; }
+    .profile-art { height: 265px; border-radius: 21px; background: linear-gradient(145deg, #dfe2ff, #f5eaff 60%, #fff0df); display: grid; place-items: center; position: relative; overflow: hidden; }
+    .profile-art::before, .profile-art::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.55); }
+    .profile-art::before { width: 210px; height: 210px; top: -70px; right: -50px; }
+    .profile-art::after { width: 140px; height: 140px; bottom: -55px; left: -25px; }
+    .avatar { width: 150px; height: 150px; border-radius: 50%; display: grid; place-items: center; background: var(--primary); color: white; font-size: 3rem; font-weight: 850; letter-spacing: -.06em; border: 8px solid rgba(255,255,255,.75); box-shadow: 0 15px 35px rgba(68,69,191,.25); z-index: 1; }
+    .profile-caption { padding: 20px 4px 2px; }
+    .profile-caption h2 { font-size: 1.25rem; margin-bottom: 3px; }
+    .profile-caption p { color: var(--muted); font-size: .94rem; margin: 0; }
+    .section { padding: 76px 0; }
+    .section-head { max-width: 650px; margin-bottom: 35px; }
+    .kicker { color: var(--primary); text-transform: uppercase; font-size: .78rem; letter-spacing: .15em; font-weight: 850; margin-bottom: 8px; }
+    h2.section-title { font-size: clamp(2rem, 4vw, 2.7rem); line-height: 1.15; letter-spacing: -.045em; margin-bottom: 12px; }
+    .section-head p { color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px; }
+    .panel p { color: var(--muted); }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .fact { padding: 17px; border-radius: 14px; background: #f6f7ff; }
+    .fact strong { display: block; font-size: 1.15rem; }
+    .fact span { color: var(--muted); font-size: .87rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { padding: 25px; border: 1px solid var(--line); border-radius: 19px; background: var(--surface); transition: transform .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .card-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: var(--accent); font-size: 1.4rem; margin-bottom: 17px; }
+    .card h3 { margin-bottom: 8px; font-size: 1.12rem; }
+    .card p { color: var(--muted); font-size: .94rem; }
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 11px; }
+    .skill { border: 1px solid #dfe2f4; background: white; color: #343a56; padding: 10px 15px; border-radius: 10px; font-weight: 650; font-size: .93rem; }
+    .project-card { display: flex; flex-direction: column; min-height: 220px; }
+    .project-tag { color: var(--primary); font-size: .77rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 850; margin-bottom: 10px; }
+    .project-card .project-link { color: var(--primary); font-weight: 750; margin-top: auto; padding-top: 18px; }
+    .contact-box { display: grid; grid-template-columns: 1fr .8fr; gap: 35px; align-items: center; background: #202344; color: white; border-radius: 26px; padding: clamp(28px, 5vw, 52px); }
+    .contact-box p { color: #c6c9df; margin-top: 12px; }
+    .contact-details { display: grid; gap: 13px; }
+    .contact-item { padding: 13px 15px; border-radius: 12px; background: rgba(255,255,255,.08); color: #f0f1ff; overflow-wrap: anywhere; }
+    footer { padding: 28px 0; color: var(--muted); font-size: .9rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .back-top { color: var(--primary); font-weight: 750; }
+    @media (max-width: 800px) {
+      .hero-grid, .about-grid, .contact-box { grid-template-columns: 1fr; }
+      .hero { padding-top: 58px; }
+      .profile-card { max-width: 440px; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .contact-box { gap: 24px; }
+    }
+    @media (max-width: 560px) {
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 71px; left: 0; right: 0; padding: 20px 5%; background: white; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 16px; }
+      .nav-links.open { display: flex; }
+      .cards { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .profile-art { height: 220px; }
+      .section { padding: 58px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="logo" href="#home">Prem<span>.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">BBA Student · Aspiring Professional</div>
+          <h1>Hello, I'm<br><span>Prem Lalwani.</span></h1>
+          <p>I'm a Bachelor of Business Administration student interested in business strategy, marketing, management, and turning ideas into meaningful results.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">Explore my work ↗</a>
+            <a class="btn btn-outline" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <aside class="profile-card" aria-label="Profile card">
+          <div class="profile-art"><div class="avatar" aria-label="Initials PL">PL</div></div>
+          <div class="profile-caption">
+            <h2>Prem Lalwani</h2>
+            <p>Business student | Curious learner | Future leader</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">A little about me</div>
+          <h2 class="section-title">Learning today. Building for tomorrow.</h2>
+          <p>I enjoy exploring how businesses work, how brands connect with people, and how teams can solve problems through thoughtful planning and collaboration.</p>
+        </div>
+        <div class="about-grid">
+          <div class="panel">
+            <h3 style="margin-bottom:12px">My approach</h3>
+            <p>I bring curiosity, a willingness to learn, and a practical mindset to new challenges. Through my BBA journey, I am building a foundation in business fundamentals while developing communication, teamwork, and analytical skills.</p>
+          </div>
+          <div class="facts">
+            <div class="fact"><strong>Business</strong><span>Core interest</span></div>
+            <div class="fact"><strong>Growth</strong><span>Mindset</span></div>
+            <div class="fact"><strong>Teamwork</strong><span>Collaboration</span></div>
+            <div class="fact"><strong>Ideas</strong><span>Problem-solving</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Education</div>
+          <h2 class="section-title">My learning journey</h2>
+          <p>Building the knowledge and practical skills to understand business from multiple perspectives.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">🎓</div>
+            <h3>Bachelor of Business Administration</h3>
+            <p>Currently pursuing a BBA, with an interest in management, marketing, finance, entrepreneurship, and organizational behaviour.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">📈</div>
+            <h3>Business Fundamentals</h3>
+            <p>Developing an understanding of how organizations plan, make decisions, serve customers, and create value.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🌱</div>
+            <h3>Continuous Learning</h3>
+            <p>Looking for opportunities to learn through projects, teamwork, presentations, and real-world business challenges.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">What I'm developing</div>
+          <h2 class="section-title">Skills & interests</h2>
+          <p>A growing toolkit of business, communication, and digital skills.</p>
+        </div>
+        <div class="skills-wrap">
+          <span class="skill">Communication</span><span class="skill">Teamwork</span>
+          <span class="skill">Leadership</span><span class="skill">Presentation Skills</span>
+          <span class="skill">Business Research</span><span class="skill">Problem-Solving</span>
+          <span class="skill">Marketing</span><span class="skill">Strategic Thinking</span>
+          <span class="skill">Time Management</span><span class="skill">Microsoft Office</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Selected work</div>
+          <h2 class="section-title">Projects & activities</h2>
+          <p>Use this section to showcase class assignments, case studies, presentations, internships, or personal projects.</p>
+        </div>
+        <div class="cards">
+          <article class="card project-card">
+            <div class="project-tag">Case study</div>
+            <h3>Business Analysis</h3>
+            <p>A study of a company's business model, target audience, competitors, and opportunities for growth.</p>
+            <a class="project-link" href="#contact">Discuss a project ↗</a>
+          </article>
+          <article class="card project-card">
+            <div class="project-tag">Marketing</div>
+            <h3>Brand & Marketing Plan</h3>
+            <p>A sample marketing concept exploring brand positioning, customer needs, and promotional strategy.</p>
+            <a class="project-link" href="#contact">Discuss a project ↗</a>
+          </article>
+          <article class="card project-card">
+            <div class="project-tag">Presentation</div>
+            <h3>Team Presentation</h3>
+            <p>A collaborative presentation focused on research, clear communication, and practical recommendations.</p>
+            <a class="project-link" href="#contact">Discuss a project ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <div class="kicker" style="color:#bfc0ff">Let's connect</div>
+            <h2 class="section-title">Have an opportunity or idea?</h2>
+            <p>I'm open to connecting with fellow students, learning from professionals, and exploring internships or collaborative projects.</p>
+          </div>
+          <div class="contact-details">
+            <!-- Replace the placeholder email and links below with your real details. -->
+            <div class="contact-item">✉️ Email: <a href="mailto:prem.example@email.com">prem.example@email.com</a></div>
+            <div class="contact-item">💼 LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">Add your LinkedIn profile</a></div>
+            <div class="contact-item">📍 Location: Add your city</div>
+            <button class="btn btn-primary" id="copyEmail" type="button">Copy email address</button>
+            <p id="copyStatus" aria-live="polite" style="margin-top:0;font-size:.9rem"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Prem Lalwani. Made with curiosity.</p>
+      <a class="back-top" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // Close the mobile menu after choosing a section
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Dynamic copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Copy contact email
+    const email = 'prem.example@email.com'; // Replace with your real email
+    document.getElementById('copyEmail').addEventListener('click', async () => {
+      const status = document.getElementById('copyStatus');
+      try {
+        await navigator.clipboard.writeText(email);
+        status.textContent = 'Email copied to clipboard.';
+      } catch (error) {
+        status.textContent = 'Please copy the email manually: ' + email;
+      }
+    });
+  </script>
+</body>
+</html>
